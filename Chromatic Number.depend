@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1527957460 source:c:\users\sorin\desktop\chromatic number\adjacency_matrix_generator.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"Header.h"
+
+1527957288 c:\users\sorin\desktop\chromatic number\header.h
+
+1527957288 source:c:\users\sorin\desktop\chromatic number\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"Header.h"
+
+1527957309 source:c:\users\sorin\desktop\chromatic number\chromatic_number.c
+	<stdlib.h>
+	<time.h>
+	"Header.h"
+
