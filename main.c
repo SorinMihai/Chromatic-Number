@@ -63,7 +63,7 @@ int main()
 
 
     printf("\n");
-   //computing the minimum number of colors and assiging it to the color variable
+   //computing the minimum number of colors and assigning it to the color variable
     color = color_vector[0];
     for(row = 0; row < number_of_vertices; row++)
         if(color_vector[row] > color)
