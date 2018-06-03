@@ -9,12 +9,28 @@ int color_vector[20]; //vector used to store the colors, represeted by numbers
 int main()
 {
     int **adjacency_matrix;
-    int number_of_vertices =rand();
+    int number_of_vertices;
     int row; //number of rows
     int color;
     int col; //number of columns
+    char answer;
 
+    printf("Would you like to manually enter the number of vertices? Y/N \n");
+    scanf("%c", &answer);
+    if(answer == 'Y' || answer == 'y')
+    {
+        printf("Enter the number of vertices : ");
+        scanf("%d", &number_of_vertices);
+    }
 
+    else {
+
+            srand(time(NULL));
+            int r;
+            r=rand()%500;
+            number_of_vertices = r;
+
+         }
     //allocating space in the memory for the adjacency matrix of the graph
     adjacency_matrix = malloc(number_of_vertices * sizeof(int*));
     for (row = 0; row < number_of_vertices; row++){
@@ -23,10 +39,15 @@ int main()
     //assigning the adjacency matrix the random generated matrix
     adjacency_matrix = adjacency_matrix_generator(number_of_vertices);
 
-   for (row = 0; row < number_of_vertices; row++){
+    //printing the adjacency matrix
+    printf("The adjacency matrix for %d vertices is \n", number_of_vertices);
+    for (row = 0; row < number_of_vertices; row++)
+    {
             printf("\n");
-        for (col = 0; col < number_of_vertices; col++){
-            printf("%d ",  adjacency_matrix[row][col]);
+
+        for (col = 0; col < number_of_vertices; col++)
+        {
+            printf("%d ", adjacency_matrix[row][col]);
         }
     }
 
@@ -35,18 +56,19 @@ int main()
     for(row = 0; row < number_of_vertices; row++)
         chromatic_number(adjacency_matrix,row);
 
+    printf("\n");
+
     for(row = 0; row < number_of_vertices; row++)
         printf("Vertex[%d] = %d\n", row+1, color_vector[row]);
 
 
-
+    printf("\n");
    //computing the minimum number of colors and assiging it to the color variable
     color = color_vector[0];
     for(row = 0; row < number_of_vertices; row++)
         if(color_vector[row] > color)
             color = color_vector[row];
 
-    printf("\n");
 
     printf("\nThe minimum number of colors needed is %d. \n", color);
 

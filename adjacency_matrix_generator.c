@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include "header_file.h"
+
+
 int ** adjacency_matrix_generator(int number_of_vertices){
     int **adjacency_matrix;
     int row;
