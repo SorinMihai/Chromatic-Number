@@ -72,7 +72,8 @@ int main()
 
     printf("\nThe minimum number of colors needed is %d. \n", color);
 
-    //free the allocated memory to avoid performance problems
+    //free the allocated memory to avoid performance issues
+    
     for (row = 0; row < number_of_vertices; row++)
     {
         free(adjacency_matrix[row]);
