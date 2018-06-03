@@ -10,19 +10,17 @@ int  chromatic_number(int **adjacency_matrix, int iterator)
     int row;
     int col;
 
-
+    color_vector[iterator] = 1;
     for(row = 0; row < iterator; row++)
     {
-
-        color_vector[iterator] = 3;
-        if(adjacency_matrix[row][iterator] == 1 && color_vector[iterator] != color_vector[row])
+        if(adjacency_matrix[row][iterator] == 1 && color_vector[iterator] == color_vector[row])
         {
             color_vector[iterator] = color_vector[row]+1;
 
         }
      }
 
-     return color_vector[iterator];
+
 }
 
 int main()
@@ -49,21 +47,22 @@ int main()
         }
     }
 
-
+    for(row = 0; row < number_of_vertices; row++)
+        chromatic_number(adjacency_matrix,row);
+    for(row = 0; row < number_of_vertices; row++)
+        printf("Vertex[%d] = %d\n", row+1, color_vector[row]);
     color = chromatic_number(adjacency_matrix, number_of_vertices);
+
+    color = color_vector[0];
+
+    for(row = 0; row < number_of_vertices; row++)
+        if(color_vector[row] > color)
+            color = color_vector[row];
+
     printf("\n");
+
     printf("\nThe minimum number of colors needed is %d. \n", color);
 
-
-    for(row = 0; row < number_of_vertices; row++)
-        {
-        chromatic_number(adjacency_matrix, row);
-        }
-
-    for(row = 0; row < number_of_vertices; row++)
-    {
-    printf("Vertex[%d] = %d \n", row+1, color);
-    }
 
     for (row = 0; row < number_of_vertices; row++)
     {
