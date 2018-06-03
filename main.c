@@ -1,54 +1,75 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "Header.h"
 
-int Adj[100][100] ,color[100];  //Adj:adjacency matrix, x:colors
 
-void color_function (int k)
+int color_vector[20];
+int  chromatic_number(int **adjacency_matrix, int iterator)
 {
-   int i;
-   int j;
-   color[k] = 1;  //coloring vertex with color 1
+    int row;
+    int col;
 
-   for(i=0;i<k;i++) //checking all k-1 vertices-backtracking
+
+    for(row = 0; row < iterator; row++)
     {
-     if(Adj[i][k] != 0 && color[k] == color[i])  //if they have the same color
-       color[k] = color[i]+1;  //assign higher color than color[i]
-   }
+
+        color_vector[iterator] = 3;
+        if(adjacency_matrix[row][iterator] == 1 && color_vector[iterator] != color_vector[row])
+        {
+            color_vector[iterator] = color_vector[row]+1;
+
+        }
+     }
+
+     return color_vector[iterator];
 }
 
 int main()
 {
-  int vtc;
-  int edges;
-  int i;
-  int j;
-  int k;
-  int l;
+    int **adjacency_matrix;
+    int number_of_vertices = 6;
+    int row;
+    int color;
+    int col;
 
-  printf("Enter the number of vertices : ");
-  scanf("%d",&vtc);  //total vertices
 
-  printf("Enter the number of edges : ");
-  scanf("%d",&edges);  //total edges
 
-  for(i=0;i<vtc;i++)
-    for(j=0;j<vtc;j++)
-      Adj[i][j] = 0;  //assign 0 to all indexes of the adjacency matrix
-
-  printf("Enter indexes where value is 1-->\n");
-  for(i=0;i<edges;i++)
-    {
-    scanf("%d %d",&k,&l);
-    Adj[k][l] = 1;
-    Adj[l][k] = 1;
+    adjacency_matrix = malloc(number_of_vertices * sizeof(int*));
+    for (row = 0; row < number_of_vertices; row++){
+        adjacency_matrix[row] = malloc(number_of_vertices * sizeof(int));
     }
 
-  for(i=0;i<vtc;i++)
-    color_function(i);  //coloring each vertex
+    adjacency_matrix = adjacency_matrix_generator(number_of_vertices);
 
-  printf("Colors of vertices -->\n");
-  for(i=0;i<vtc;i++)  //displaying color of each vertex
-    printf("Vertex[%d] : %d\n",i+1,color[i]);
+   for (row = 0; row < number_of_vertices; row++){
+            printf("\n");
+        for (col = 0; col < number_of_vertices; col++){
+            printf("%d ",  adjacency_matrix[row][col]);
+        }
+    }
 
-  return 0;
+
+    color = chromatic_number(adjacency_matrix, number_of_vertices);
+    printf("\n");
+    printf("\nThe minimum number of colors needed is %d. \n", color);
+
+
+    for(row = 0; row < number_of_vertices; row++)
+        {
+        chromatic_number(adjacency_matrix, row);
+        }
+
+    for(row = 0; row < number_of_vertices; row++)
+    {
+    printf("Vertex[%d] = %d \n", row+1, color);
+    }
+
+    for (row = 0; row < number_of_vertices; row++)
+    {
+        free(adjacency_matrix[row]);
+    }
+    free(adjacency_matrix);
+
+    return 0;
 }
