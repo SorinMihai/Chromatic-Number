@@ -33,23 +33,15 @@ int main()
          }
     //allocating space in the memory for the adjacency matrix of the graph
     adjacency_matrix = malloc(number_of_vertices * sizeof(int*));
-    for (row = 0; row < number_of_vertices; row++){
+    for (row = 0; row < number_of_vertices; row++)
+    {
         adjacency_matrix[row] = malloc(number_of_vertices * sizeof(int));
     }
     //assigning the adjacency matrix the random generated matrix
     adjacency_matrix = adjacency_matrix_generator(number_of_vertices);
 
     //printing the adjacency matrix
-    printf("The adjacency matrix for %d vertices is \n", number_of_vertices);
-    for (row = 0; row < number_of_vertices; row++)
-    {
-            printf("\n");
-
-        for (col = 0; col < number_of_vertices; col++)
-        {
-            printf("%d ", adjacency_matrix[row][col]);
-        }
-    }
+    print_matrix(adjacency_matrix, number_of_vertices);
 
     printf("\n");
 
@@ -72,8 +64,7 @@ int main()
 
     printf("\nThe minimum number of colors needed is %d. \n", color);
 
-    //free the allocated memory to avoid performance issues
-    
+    //free the allocated memory to avoid performance problems
     for (row = 0; row < number_of_vertices; row++)
     {
         free(adjacency_matrix[row]);

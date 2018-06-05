@@ -5,6 +5,8 @@ int **adjacency_matrix_generator(int number_of_vertices);
 
 int chromatic_number(int **adjacency_matrix, int number_of_vertices);
 
+void print_matrix(int **adjacency_matrix, int number_of_vertices);
+
 
 
 #endif
