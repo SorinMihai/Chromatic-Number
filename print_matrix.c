@@ -3,6 +3,7 @@
 #include <time.h>
 #include "header_file.h"
 
+///function to print the adjacency matrix
 void print_matrix(int **adjacency_matrix, int number_of_vertices)
 {
 int row;

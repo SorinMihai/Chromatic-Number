@@ -9,7 +9,7 @@ int ** adjacency_matrix_generator(int number_of_vertices)
     int **adjacency_matrix;
     int row;
     int col;
-    //allocating space in the memory for the matrix
+    ///allocating space in the memory for the matrix
     adjacency_matrix = malloc(number_of_vertices * sizeof(int*));
     for (row = 0; row < number_of_vertices; row++)
     {
@@ -22,11 +22,11 @@ int ** adjacency_matrix_generator(int number_of_vertices)
             {
             if (row == col)
 
-               //filling the main diagonal with 0
+               ///filling the main diagonal with 0
                adjacency_matrix[row][col] = 0;
             else
                 {
-                //assigning the values to the matrix
+                ///assigning the values to the matrix
                 adjacency_matrix[row][col] = rand() % 2;
                 adjacency_matrix[col][row] = adjacency_matrix[row][col];
                 }
